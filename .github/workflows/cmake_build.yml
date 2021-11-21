@@ -30,4 +30,4 @@ jobs:
             name: "macOS Latest Clang", artifact: "macOS.tar.xz",
             os: macos-latest,
             build_type: "Reease", cc: "clang", cxx: "clang++"
-          }l
+          }
