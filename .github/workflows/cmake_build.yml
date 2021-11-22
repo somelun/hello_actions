@@ -11,13 +11,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-        # build project
+      - name: Run Cmake
         run: |
           mkdir build
           cd build
           CMAKE ..
+
+      - name: Build
+        run:
           make
 
     # name: ${ { matrix.config.name } }
