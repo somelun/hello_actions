@@ -1,33 +1,53 @@
 name: CMake build matrix
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request: {}
+
 
 jobs:
   build:
-    name: ${ { matrix.config.name } }
-    runs-on: ${ { matrix.config.os } }
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-        # - {
-        #     name: "Windows Latest MSVC", artifact: "Windows-MSVC.tar.xz",
-        #     os: windows-latest,
-        #     build_type: "Release", cc: "cl", cxx: "cl",
-        #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-        #   }
-        # - {
-        #     name: "Windows Latest MinGW", artifact: "Windows-MinGW.tar.xz",
-        #     os: windows-latest,
-        #     build_type: "Release", cc: "gcc", cxx: "g++"
-        #   }
-        - {
-            name: "Ubuntu Latest GCC", artifact: "Linux.tar.xz",
-            os: ubuntu-latest,
-            build_type: "Release", cc: "gcc", cxx: "g++"
-          }
-        # - {
-        #     name: "macOS Latest Clang", artifact: "macOS.tar.xz",
-        #     os: macos-latest,
-        #     build_type: "Reease", cc: "clang", cxx: "clang++"
-        #   }
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Usually this is always needed
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+    # name: ${ { matrix.config.name } }
+    # runs-on: ${ { matrix.config.os } }
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     config:
+    #     - {
+    #         name: "Windows Latest MSVC", artifact: "Windows-MSVC.tar.xz",
+    #         os: windows-latest,
+    #         build_type: "Release", cc: "cl", cxx: "cl",
+    #         environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+    #       }
+    #     - {
+    #         name: "Windows Latest MinGW", artifact: "Windows-MinGW.tar.xz",
+    #         os: windows-latest,
+    #         build_type: "Release", cc: "gcc", cxx: "g++"
+    #       }
+    #     - {
+    #         name: "Ubuntu Latest GCC", artifact: "Linux.tar.xz",
+    #         os: ubuntu-latest,
+    #         build_type: "Release", cc: "gcc", cxx: "g++"
+    #       }
+    #     - {
+    #         name: "macOS Latest Clang", artifact: "macOS.tar.xz",
+    #         os: macos-latest,
+    #         build_type: "Reease", cc: "clang", cxx: "clang++"
+    #       }
